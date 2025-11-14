@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>GR Rosati - Home</title>
+  <link rel="icon" href="/assets/images/logo.png">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <meta name="description" content="GR Rosati - prodotti in legno">
+  <script>
+  async function sendForm(e) {
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+    const btn = form.querySelector('button');
+    btn.disabled = true;
+    btn.textContent = 'Invio...';
+    try {
+      const res = await fetch('/send-email', { method: 'POST', body: data });
+      const json = await res.json();
+      if (res.ok) {
+        alert('Messaggio inviato con successo.');
+        form.reset();
+      } else {
+        alert('Errore: ' + (json.error || res.statusText));
+      }
+    } catch (err) {
+      alert('Errore di rete: ' + err.message);
+    } finally {
+      btn.disabled = false;
+      btn.textContent = 'Invia richiesta';
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container">
+      <a class="logo" href="/">
+        <img class="logo-img" src="/assets/images/logo.png" alt="GR Rosati logo">
+        <span class="brand">GR ROSATI</span>
+      </a>
+      <nav class="top-nav">
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">Materiali in Legno per Edilizia</a>
+          <ul class="dropdown-menu">
+            <li><a href="/controtelaio-requadro.html">Controtelai per finestre REquadro</a></li>
+            <li><a href="/controtelaio-prontotelaio.html">Controtelai per porte ProntoTelaio</a></li>
+            <li><a href="/listelli-profil-onda.html">Listelli ondulati Profil Onda</a></li>
+            <li><a href="/smussi-legno.html">Smussi in legno</a></li>
+            <li><a href="/cunei-legno.html">Cunei in legno</a></li>
+            <li><a href="/picchetti-legno.html">Picchetti in legno</a></li>
+            <li><a href="/magatelli-legno.html">Magatelli in legno</a></li>
+            <li><a href="/frattazzi-legno.html">Frattazzi in legno</a></li>
+            <li><a href="/segatura-legno.html">Segatura di legno</a></li>
+            <li><a href="/distanziatori.html">Distanziatori per armatura</a></li>
+          </ul>
+        </div>
+        <a href="#contatti">Contatti</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="hero">
+      <h1>Benvenuti da GR Rosati</h1>
+      <p>Soluzioni e articoli in legno per l'edilizia e l'artigianato.</p>
+    </section>
+
+    <section class="content">
+      <article class="posts">
+
+        <div class="featured-card post">
+          <img class="card-image" loading="lazy" src="/assets/images/home/picchetti-legno.png" alt="Picchetti in legno ideali per delimitare terreni">
+          <div class="card-body">
+            <h3><a href="/picchetti-legno.html">Picchetti in legno ideali per delimitare terreni</a></h3>
+            <p>I nostri picchetti ecologici sono perfetti per l'utilizzo in aree e terreni dove sia necessario delimitare e segnalare confini. Costruiti in legno, i picchetti GR Rosati garantiscono la massima resistenza e durata nel tempo.</p>
+            <a href="/picchetti-legno.html">Leggi tutto</a>
+          </div>
+        </div>
+
+        <!-- Duplicate small picchetti card removed; featured card kept above -->
+
+        <div class="post">
+          <img class="card-image" loading="lazy" src="/assets/images/distanziatori/distanziatori.png" alt="Distanziatori per armatura">
+          <div class="card-body">
+            <h3><a href="/distanziatori.html">Distanziatori per armatura</a></h3>
+            <p>Distanziatori in Acciaio per Pannelli Gialli in Legno per armature in edilizia. I distanziatori per pannelli gialli e casseri in legno sono fondamentali per l'armatura di muri cementizi.</p>
+            <a href="/distanziatori.html">Leggi tutto</a>
+          </div>
+        </div>
+
+        <div class="post">
+          <img class="card-image" loading="lazy" src="/assets/images/home/requadro-telaio-finestre.png" alt="Nuovo telaio in legno per finestre">
+          <div class="card-body">
+            <h3><a href="/controtelaio-requadro.html">Nuovo telaio in legno per finestre</a></h3>
+            <p>Controtelai in legno regolabili per finestre e portefinestre.</p>
+            <a href="/controtelaio-requadro.html">Leggi tutto</a>
+          </div>
+        </div>
+
+        <div class="post">
+          <img class="card-image" loading="lazy" src="/assets/images/home/requadro-telaio-finestre2.png" alt="Controtelai per finestre Requadro">
+          <div class="card-body">
+            <h3><a href="/controtelaio-prontotelaio.html">Controtelai per finestre REquadro</a></h3>
+            <p>Controtelai in legno regolabili in larghezza, per finestre e porte finestre con persiane o avvolgibili esterne.</p>
+            <a href="/controtelaio-prontotelaio.html">Leggi tutto</a>
+          </div>
+        </div>
+
+        <div class="post">
+          <img class="card-image" loading="lazy" src="/assets/images/home/controtelaio-porte.png" alt="Controtelai in legno preassemblati">
+          <div class="card-body">
+            <h3><a href="/controtelaio-prontotelaio.html">Controtelai in legno preassemblati per muratori</a></h3>
+            <p>Kit contro telaio già pronto per utilizzo in muratura. Mascherine per porte regolabili in 7 misure.</p>
+            <a href="/controtelaio-prontotelaio.html">Leggi tutto</a>
+          </div>
+        </div>
+
+        <div class="post">
+          <img class="card-image" loading="lazy" src="/assets/images/home/profil-onda2.png" alt="Listelli ondulati Profil Onda">
+          <div class="card-body">
+            <h3><a href="/listelli-profil-onda.html">Listelli ondulati Profil Onda</a></h3>
+            <p>Listelli in legno per edilizia, profili ondulati per la posa di tettoie con ondulina.</p>
+            <a href="/listelli-profil-onda.html">Leggi tutto</a>
+          </div>
+        </div>
+
+        <div class="post">
+          <img class="card-image" loading="lazy" src="/assets/images/home/smussi-legno.png" alt="Smussi in legno">
+          <div class="card-body">
+            <h3><a href="/smussi-legno.html">Smussi in legno</a></h3>
+            <p>Profili triangolari per carpenteria edile per ottenere angoli smussati nelle gettate di calcestruzzo.</p>
+            <a href="/smussi-legno.html">Leggi tutto</a>
+          </div>
+        </div>
+
+        <div class="post">
+          <img class="card-image" loading="lazy" src="/assets/images/home/cunei-legno1.png" alt="Cunei in legno">
+          <div class="card-body">
+            <h3><a href="/cunei-legno.html">Cunei in legno</a></h3>
+            <p>Cunei in legno di pioppo per lavori edili, resistenti e pronti per l'uso in kit con chiodi, per il fissaggio di materiali in edilizia.</p>
+            <a href="/cunei-legno.html">Leggi tutto</a>
+          </div>
+        </div>
+
+        <!-- Picchetti small card removed; featured card kept -->
+
+        <div class="post">
+          <img class="card-image" loading="lazy" src="/assets/images/home/magatelli.png" alt="Magatelli in legno">
+          <div class="card-body">
+            <h3><a href="/magatelli-legno.html">Magatelli in legno</a></h3>
+            <p>Listelli in legno magatelli da fissare a terra nel cemento per il fissaggio di parquet e pavimenti.</p>
+            <a href="/magatelli-legno.html">Leggi tutto</a>
+          </div>
+        </div>
+
+        <div class="post">
+          <img class="card-image" loading="lazy" src="/assets/images/home/frattazzo.png" alt="Frattazzi in legno">
+          <div class="card-body">
+            <h3><a href="/frattazzi-legno.html">Frattazzi in legno</a></h3>
+            <p>Pubblicato da Di GR Rosati legno per edilizia — Frattazzi in legno per edilizia.</p>
+            <a href="/frattazzi-legno.html">Leggi tutto</a>
+          </div>
+        </div>
+
+        <div class="post">
+          <img class="card-image" loading="lazy" src="/assets/images/home/segatura.png" alt="Segatura di legno">
+          <div class="card-body">
+            <h3><a href="/segatura-legno.html">Segatura di legno</a></h3>
+            <p>Segatura ecologica senza polvere per pulizia pavimenti e altri usi, di legno naturale chiaro senza additivi chimici.</p>
+            <a href="/segatura-legno.html">Leggi tutto</a>
+          </div>
+        </div>
+
+      </article>
+
+      <aside class="sidebar">
+        <h3>Richiesta informazioni</h3>
+        <form id="contactForm" onsubmit="sendForm(event)">
+          <label>Nome
+            <input name="name" required>
+          </label>
+          <label>Email
+            <input type="email" name="email" required>
+          </label>
+          <label>Messaggio
+            <textarea name="message" rows="5" required></textarea>
+          </label>
+          <button type="submit">Invia richiesta</button>
+        </form>
+      </aside>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div style="display:flex;flex-direction:row;justify-content:space-between;align-items:flex-start;gap:20px;flex-wrap:wrap">
+        <div style="max-width:640px;color:#ddd">
+          <strong>GR ROSATI snc</strong><br>
+          Via Pietro Fornaciari Chittoni, 7<br>
+          42035 Castelnovo ne’ Monti (RE) – Italy<br>
+          Tel. +39 0522 812620<br>
+          Partita IVA 01560950352
+        </div>
+        <div style="text-align:right;min-width:180px">
+          <div><a href="#contatti" style="color:#9ec1ff;text-decoration:none;font-weight:600">GR Rosati E-mail</a></div>
+          <div style="margin-top:6px"><a href="/privacy.html" style="color:#9ec1ff;text-decoration:none;font-weight:600">Privacy e Cookie Policy</a></div>
+        </div>
+      </div>
+      <div style="margin-top:14px;color:#bdbdbd;font-size:13px">© GR Rosati - Tutti i diritti riservati</div>
+    </div>
+  </footer>
+  <script>
+    // Dropdown click/tap handler for mobile: toggle .open on nav-dropdown
+    (function(){
+      const navDropdown = document.querySelector('.nav-dropdown');
+      if(!navDropdown) return;
+      const link = navDropdown.querySelector('.nav-link');
+      const menu = navDropdown.querySelector('.dropdown-menu');
+
+      // Only add click/tap toggle on devices that don't support hover (touch devices)
+      const supportsHover = window.matchMedia && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+      if(!supportsHover){
+        link.addEventListener('click', function(ev){
+          ev.preventDefault();
+          ev.stopPropagation();
+          navDropdown.classList.toggle('open');
+        });
+      }
+
+      // Close when clicking outside
+      document.addEventListener('click', function(){
+        navDropdown.classList.remove('open');
+      });
+
+      // Prevent closing when clicking inside the menu
+      if(menu){
+        menu.addEventListener('click', function(ev){ ev.stopPropagation(); });
+      }
+    })();
+  </script>
+</body>
+</html>
