@@ -259,6 +259,54 @@ form button{background:var(--accent);color:#fff;padding:10px 14px;border:0;borde
   .product-article h1{font-size:20px}
 }
 
+/* Dynamic homepage animations */
+/* Hero entrance */
+.hero{transform:translateY(10px);opacity:0;transition:transform .8s cubic-bezier(.2,.9,.2,1),opacity .8s ease}
+.hero.visible{transform:translateY(0);opacity:1}
+
+/* Posts: initial hidden state then fade/slide in with stagger */
+.post{opacity:0;transform:translateY(18px);transition:transform .62s cubic-bezier(.2,.9,.2,1),opacity .62s ease,box-shadow .18s ease;transition-delay:var(--delay,0ms)}
+.post.in-view{opacity:1;transform:translateY(0)}
+.post:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 18px 42px rgba(16,24,40,0.12)}
+
+/* Make sure transitions are smooth on reduced-motion preferences */
+@media (prefers-reduced-motion: reduce){
+	.hero, .post{transition:none!important;transform:none!important;opacity:1!important}
+}
+
+/* Hero decorative particles and parallax container */
+.hero{position:relative;overflow:hidden}
+.hero-decor{position:absolute;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+.hero > *{position:relative;z-index:2}
+.hero-decor .circle{position:absolute;border-radius:50%;opacity:0.12;filter:blur(6px);transform:translateY(0);will-change:transform,opacity}
+
+@keyframes floatUp {
+	0%{transform:translateY(20vh) scale(1);opacity:0}
+	10%{opacity:0.08}
+	90%{opacity:0.06}
+	100%{transform:translateY(-30vh) scale(0.9);opacity:0}
+}
+
+@keyframes sway {
+	0%{transform:translateX(0)}
+	50%{transform:translateX(8px)}
+	100%{transform:translateX(0)}
+}
+
+/* Slight 3D tilt on hero for depth on pointer move */
+.hero.tilt{transform-style:preserve-3d;transition:transform .12s ease}
+
+/* Enhance post animation for more drama */
+.post{opacity:0;transform:translateY(26px) rotateX(6deg) scale(.995);transition:transform .72s cubic-bezier(.2,.9,.2,1),opacity .72s ease,box-shadow .18s ease;}
+.post.in-view{opacity:1;transform:translateY(0) rotateX(0deg) scale(1)}
+.post .card-image{transition:transform .5s ease,filter .5s ease}
+.post:hover .card-image{transform:scale(1.06) translateZ(0);filter:brightness(1.02)}
+
+/* Limit number of heavy decorative elements on small screens */
+@media (max-width:720px){
+	.hero-decor{opacity:0.7}
+}
+
 /* Additional form block styles (used on index and contatti) */
 .form-block { display:block; }
 .form-header { display:flex; gap:10px; align-items:center; margin-bottom:10px; }

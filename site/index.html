@@ -67,6 +67,7 @@
 
   <main class="container">
     <section class="hero">
+      <div class="hero-decor" aria-hidden="true"></div>
       <h1>Benvenuti da GR Rosati</h1>
       <p>Soluzioni e articoli in legno per l'edilizia e l'artigianato.</p>
     </section>
@@ -283,6 +284,77 @@
       if(menu){
         menu.addEventListener('click', function(ev){ ev.stopPropagation(); });
       }
+    })();
+  </script>
+  <script>
+    // Enhanced homepage dynamics: hero entrance, particle decor, parallax, and staggered reveal
+    (function(){
+      function rand(min,max){ return Math.random()*(max-min)+min }
+
+      document.addEventListener('DOMContentLoaded', function(){
+        const hero = document.querySelector('.hero');
+        if(hero) setTimeout(()=> hero.classList.add('visible'), 120);
+
+        // Create decorative floating circles inside .hero-decor
+        const decor = document.querySelector('.hero-decor');
+        if(decor){
+          const colors = ['#f6e7d0','#ffdca6','#e6c9b0','#d7bfa6','#f3efe8'];
+          const count = Math.max(6, Math.min(14, Math.floor(window.innerWidth/120)));
+          for(let i=0;i<count;i++){
+            const el = document.createElement('div');
+            el.className = 'circle';
+            const size = Math.round(rand(60,180));
+            el.style.width = `${size}px`;
+            el.style.height = `${size}px`;
+            el.style.left = `${rand(-8,100)}%`;
+            el.style.top = `${rand(20,80)}%`;
+            el.style.background = colors[Math.floor(rand(0,colors.length))];
+            el.style.opacity = (rand(6,12)/100).toFixed(2);
+            const duration = rand(10,26).toFixed(1);
+            const delay = rand(0,8).toFixed(2);
+            el.style.animation = `floatUp ${duration}s linear ${delay}s infinite, sway ${rand(6,14).toFixed(1)}s ease-in-out ${delay}s infinite`;
+            el.style.transform = `translateY(0)`;
+            decor.appendChild(el);
+          }
+          // Parallax on pointer move (subtle)
+          let rect = decor.getBoundingClientRect();
+          function onMove(e){
+            const cx = rect.left + rect.width/2;
+            const cy = rect.top + rect.height/2;
+            const dx = (e.clientX - cx) / rect.width;
+            const dy = (e.clientY - cy) / rect.height;
+            const tx = dx * 10; const ty = dy * 6;
+            decor.style.transform = `translate3d(${tx}px, ${ty}px, 0)`;
+            hero.classList.add('tilt');
+          }
+          window.addEventListener('mousemove', function(e){ rect = decor.getBoundingClientRect(); onMove(e); });
+          window.addEventListener('mouseout', function(){ decor.style.transform='translate3d(0,0,0)'; hero.classList.remove('tilt'); });
+        }
+
+        // Posts reveal with stagger and improved timing
+        const posts = Array.from(document.querySelectorAll('.post'));
+        posts.forEach((p,i)=> p.style.setProperty('--delay', `${i*90}ms`));
+
+        if('IntersectionObserver' in window){
+          const io = new IntersectionObserver((entries, obs)=>{
+            entries.forEach(en=>{
+              if(en.isIntersecting){
+                setTimeout(()=> en.target.classList.add('in-view'), parseInt(getComputedStyle(en.target).getPropertyValue('--delay')) || 0);
+                obs.unobserve(en.target);
+              }
+            });
+          }, {threshold:0.12});
+          posts.forEach(p=> io.observe(p));
+        } else {
+          posts.forEach((p,i)=> setTimeout(()=> p.classList.add('in-view'), i*80));
+        }
+
+        // Respect reduced-motion: remove heavy animations
+        if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+          document.querySelectorAll('.circle').forEach(c=> c.style.animation='none');
+          posts.forEach(p=> p.classList.add('in-view'));
+        }
+      });
     })();
   </script>
 </body>
