@@ -30,6 +30,13 @@ body.home::before{
 .site-header .container{display:flex;align-items:center;justify-content:space-between}
 .logo{display:flex;align-items:center;gap:12px;text-decoration:none}
 .logo-img{width:72px;height:auto;display:block}
+
+/* Larger logo on homepage for stronger presence */
+body.home .logo-img{width:110px}
+
+@media (max-width:520px){
+	body.home .logo-img{width:86px}
+}
 .brand{font-weight:800;color:var(--wood);font-size:20px}
 .top-nav a{margin-left:14px;color:var(--muted);text-decoration:none;font-size:14px;padding:8px 10px;border-radius:8px;transition:background .18s,color .18s}
 .top-nav a:hover{background:rgba(166,124,82,0.08);color:var(--wood)}
