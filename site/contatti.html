@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Contatti - GR Rosati</title>
+  <link rel="icon" href="/assets/images/logo.png">
+  <link rel="stylesheet" href="/assets/styles.css">
+  <script>
+  // Open Gmail compose with prefilled recipient/subject/body instead of sending via backend
+  function sendForm(e){
+    e.preventDefault();
+    const form = e.target;
+    const name = (form.querySelector('[name="name"]').value || '').trim();
+    const email = (form.querySelector('[name="email"]').value || '').trim();
+    const message = (form.querySelector('[name="message"]').value || '').trim();
+    const to = 'grrosati@libero.it';
+    const subject = `Richiesta da sito GR Rosati - ${name || email}`;
+    const body = `${message}\n\nNome: ${name}\nEmail: ${email}`;
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&to=${encodeURIComponent(to)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const w = window.open(gmailUrl, '_blank');
+    if(!w){
+      const mailto = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailto;
+    }
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header"><div class="container"><a class="logo" href="/"><img class="logo-img" src="/assets/images/logo.png" alt="GR Rosati logo"><span class="brand">GR ROSATI</span></a></div></header>
+
+  <main class="container">
+    <section id="contatti">
+      <article style="margin:28px 0;padding:26px;background:var(--card-bg);border-radius:8px;border:1px solid var(--border)">
+        <div style="display:flex;gap:28px;flex-wrap:wrap;align-items:flex-start">
+          <div style="flex:1 1 560px;min-width:320px">
+            <h1>Articoli in legno per edilizia lavorazione Made in Italy</h1>
+
+            <p>La nostra azienda si occupa di produzione e vendita di articoli in legno per edilizia:</p>
+
+            <ul>
+              <li>controtelai in legno regolabili per finestre</li>
+              <li>controtelai in legno per porte</li>
+              <li>listelli ondulati per coperture</li>
+              <li>profili</li>
+              <li>listelli triangolari o smussi</li>
+              <li>cunei</li>
+              <li>picchetti per misure e frazionamenti</li>
+              <li>frattazzi</li>
+              <li>segatura ecologica depolverata.</li>
+            </ul>
+
+            <h3>Una lunga esperienza nella lavorazione del legno</h3>
+
+            <p>Oltre cinquanta anni di esperienza nella lavorazione del legno e impianti all’avanguardia fanno dell’azienda GR Rosati snc un partner affidabile nella fornitura di materiali e utensili in legno per edilizia per magazzini edili e di legname.</p>
+
+            <p>Dal legno massello selezionato nascono i nostri articoli per edilizia<br>
+            GR Rosati, stabilimento lavorazione legno per edilizia<br>
+            La nuova sede GR Rosati a Castelnovo ne’ Monti, provincia di Reggio Emilia</p>
+
+            <p>I nostri utensili in legno sono garanzia di qualità ed affidabilità poiché l’azienda si occupa di ogni fase di lavorazione, dalla iniziale selezione del legno alla consegna del prodotto ligneo finito.</p>
+
+            <p>Nella nuova e più ampia sede aziendale GR Rosati avviene il processo di lavorazione del legname, verifica e imballaggio dei profili e articoli in legno.</p>
+
+            <p>Il nostro magazzino di stoccaggio legname è fornito delle essenze migliori per tali lavorazioni.</p>
+
+            <p>Assicuriamo inoltre al cliente una consegna rapida e sicura.</p>
+
+            <h3>Qualità del legno e della lavorazione</h3>
+
+            <p>La selezione del miglior legno in commercio, la lavorazione attraverso macchinari all’avanguardia e gli attenti controlli di qualità, hanno reso i prodotti G.R. Rosati un punto di riferimento per molti rivenditori.</p>
+
+            <p>Importiamo il legno della miglior qualità dai maggiori produttori di legnami per garantire ai nostri clienti l’alta affidabilità del prodotto, mantenendo comunque un ottimo rapporto qualità/prezzo.</p>
+
+            <h3>Distribuzione e rete di vendita GR Rosati</h3>
+
+            <p>G.R. Rosati snc fornisce materiali in legno per l’edilizia in tutta Italia.</p>
+
+            <p>La rete di vendita è gestita da agenti, per informazioni invia una richiesta.</p>
+          </div>
+
+          <aside style="width:360px;min-width:280px">
+            <img src="/assets/images/gr-rosati-sede.jpg" alt="Sede GR Rosati" style="width:100%;border-radius:6px;margin-bottom:12px">
+            <div class="contact-card">
+              <strong>GR ROSATI snc</strong>
+              <div>Via Pietro Fornaciari Chittoni, 7</div>
+              <div>42035 Castelnovo ne’ Monti (RE) – Italy</div>
+              <div>Tel. +39 0522 812620</div>
+              <div>Partita IVA 01560950352</div>
+            </div>
+
+            <h2>Contatti</h2>
+            <div class="form-block">
+              <div class="form-header">
+                <div class="mail-icon" aria-hidden="true">✉</div>
+                <div>
+                  <h3 style="margin:0">Scrivici una richiesta</h3>
+                  <div class="mail-note">Si aprirà il tuo client di posta per inviare la richiesta direttamente a <strong>grrosati@libero.it</strong>.</div>
+                </div>
+              </div>
+
+              <form id="contactForm" onsubmit="sendForm(event)">
+                <label>Nome
+                  <input name="name" required>
+                </label>
+                <label>Email
+                  <input type="email" name="email" required>
+                </label>
+                <label>Messaggio
+                  <textarea name="message" rows="8" required></textarea>
+                </label>
+                <button type="submit" class="email-btn" aria-label="Apri Gmail per inviare la richiesta">
+                  <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2z" fill="#fff" opacity="0.06"/><path d="M4 6l8 5 8-5v12H4z" fill="#fff" opacity="0.08"/><path d="M20 6l-8 5L4 6" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                  Apri Gmail
+                </button>
+              </form>
+            </div>
+          </aside>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container">© GR Rosati - Tutti i diritti riservati</div></footer>
+</body>
+</html>

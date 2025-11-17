@@ -10,13 +10,133 @@
 <body>
   <header class="site-header"><div class="container"><a class="logo" href="/"><img class="logo-img" src="/assets/images/logo.png" alt="GR Rosati logo"><span class="brand">GR ROSATI</span></a></div></header>
   <main class="container">
-    <article style="margin:28px 0;padding:26px;background:var(--card-bg);border-radius:8px;border:1px solid var(--border)">
-      <img src="/assets/images/distanziatori/distanziatori.png" style="width:100%;height:420px;object-fit:cover;border-radius:8px" alt="Distanziatori">
-      <h1 style="margin-top:18px">Distanziatori per armatura</h1>
-      <p>Distanziatori in Acciaio per Pannelli Gialli in Legno per armature in edilizia. I distanziatori per pannelli gialli e casseri in legno sono fondamentali per l'armatura di muri cementizi.</p>
-      <p><a href="/" class="btn">Torna alla home</a></p>
+    <article class="product-article">
+      <div class="product-media">
+        <img class="product-main" src="/assets/images/distanziatori/distanziatori.png" alt="Distanziatori in acciaio">
+      </div>
+
+      <div class="product-header">
+        <div class="title-wrap">
+          <h1>Distanziatori per armatura</h1>
+          <p class="lead"><strong>Distanziatori in Acciaio per Pannelli Gialli in Legno per armature in edilizia</strong></p>
+        </div>
+      </div>
+
+      <div class="product-grid">
+        <div class="description">
+          <p>I distanziatori per pannelli gialli e casseri in legno sono fondamentali per l’armatura di muri cementizi.</p>
+
+          <p>I profili o distanziatori in Acciaio trafilato sono disponibili in tutte le lunghezze dai 10 ai 100 cm, a seconda della dimensione del muro che si deve gettare.</p>
+
+          <p>Tali profili o lamelle in acciaio sono “a perdere” dal momento che, una volta che il muro è armato e gettato, i distanziatori restano all’interno dello stesso. I distanziatori sono disponibili in confezioni da 100 pezzi.</p>
+
+          <p>Confezione trasparente richiudibile con chiusura ermetica per limitare la formazione di ruggine. Sulla confezione stampa di tabella di massima sulla quantità e interasse di posizionamento dei distanziatori in base alle dimensioni del muro. Su ordinazione sono disponibili lunghezze superiori ai 100 cm. Si effettuano consegne anche di piccole quantità. GR Rosati produce inoltre Cunei in Acciaio per distanziatori Asola Corta in confezione da 100 pezzi.</p>
+
+          <div class="product-gallery">
+            <a class="gallery-item" href="#" data-src="/assets/images/distanziatori/profili.jpg"><img src="/assets/images/distanziatori/profili.jpg" alt="Profili distanziatori"></a>
+            <div style="text-align:center;color:#555;margin-top:6px;font-size:14px">Profili distanziatori acciaio per armature cemento</div>
+            <a class="gallery-item" href="#" data-src="/assets/images/distanziatori/distanziatori.png"><img src="/assets/images/distanziatori/distanziatori.png" alt="Distanziatori"></a>
+            <div style="text-align:center;color:#555;margin-top:6px;font-size:14px">Distanziatori in Acciaio per Casseri in Legno per armature</div>
+          </div>
+        </div>
+
+        <aside class="specs">
+          <h4>Specifiche e disponibilità</h4>
+          <ul>
+            <li><strong>Lunghezze:</strong> 10–100 cm standard (su richiesta oltre 100 cm)</li>
+            <li><strong>Confezioni:</strong> 100 pezzi, confezione richiudibile</li>
+            <li><strong>Materiale:</strong> Acciaio trafilato, a perdere</li>
+            <li><strong>Consegne:</strong> anche in piccole quantità</li>
+          </ul>
+        </aside>
+      </div>
     </article>
   </main>
   <footer class="site-footer"><div class="container">© GR Rosati - Tutti i diritti riservati</div></footer>
+  <!-- Lightbox markup -->
+  <div id="lightbox" class="lightbox-overlay" aria-hidden="true">
+    <div class="lightbox-content">
+      <button class="lightbox-close" aria-label="Chiudi">×</button>
+      <img id="lightbox-image" src="" alt="">
+    </div>
+  </div>
+  <script>
+    (function(){
+      const lightbox = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightbox-image');
+      const closeBtn = lightbox.querySelector('.lightbox-close');
+      const galleryItems = document.querySelectorAll('.gallery-item');
+
+      function open(src, alt){
+        lbImg.src = src;
+        lbImg.alt = alt || '';
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function close(){
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden','true');
+        lbImg.src = '';
+        document.body.style.overflow = '';
+      }
+
+      galleryItems.forEach(item=>{
+        item.addEventListener('click', function(ev){
+          ev.preventDefault();
+          const src = item.getAttribute('data-src') || item.querySelector('img').src;
+          const alt = item.querySelector('img').alt;
+          open(src, alt);
+        });
+      });
+
+      // open main image when clicked
+      const main = document.querySelector('.product-main');
+      if(main){
+        main.addEventListener('click', function(){ open(main.src, main.alt); });
+      }
+
+      closeBtn.addEventListener('click', close);
+      lightbox.addEventListener('click', function(e){ if(e.target === lightbox) close(); });
+      document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
+    })();
+  </script>
+  <script>
+    (function(){
+      const container = document.querySelector('.product-media');
+      if(!container) return;
+      const img = container.querySelector('.product-main');
+      function setBgAndColor(){
+        if(!img) return;
+        const src = img.getAttribute('src') || img.src;
+        if(src) container.style.setProperty('--bg-img', `url('${src}')`);
+
+        const sample = function(imageSrc){
+          const tmp = new Image();
+          tmp.crossOrigin = 'Anonymous';
+          tmp.onload = function(){
+            try{
+              const w = 40, h = 40;
+              const c = document.createElement('canvas');
+              c.width = w; c.height = h;
+              const ctx = c.getContext('2d');
+              ctx.drawImage(tmp, 0, 0, w, h);
+              const data = ctx.getImageData(0,0,w,h).data;
+              let r=0,g=0,b=0,count=0;
+              for(let i=0;i<data.length;i+=16){ r+=data[i]; g+=data[i+1]; b+=data[i+2]; count++; }
+              if(count>0){ r=Math.round(r/count); g=Math.round(g/count); b=Math.round(b/count); container.style.setProperty('--primary-color', `rgba(${r},${g},${b},0.30)`); }
+            }catch(e){ container.style.setProperty('--primary-color', 'rgba(155,104,62,0.18)'); }
+          };
+          tmp.onerror = function(){ container.style.setProperty('--primary-color', 'rgba(155,104,62,0.18)'); };
+          tmp.src = imageSrc;
+        };
+
+        if(img.complete && img.naturalWidth>0) sample(img.src);
+        else img.addEventListener('load', function(){ sample(img.src); });
+      }
+      setBgAndColor();
+    })();
+  </script>
 </body>
 </html>

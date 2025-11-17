@@ -8,32 +8,28 @@
   <link rel="stylesheet" href="/assets/styles.css">
   <meta name="description" content="GR Rosati - prodotti in legno">
   <script>
-  async function sendForm(e) {
+  // Open Gmail compose with prefilled recipient/subject/body instead of sending via backend
+  function sendForm(e){
     e.preventDefault();
     const form = e.target;
-    const data = new FormData(form);
-    const btn = form.querySelector('button');
-    btn.disabled = true;
-    btn.textContent = 'Invio...';
-    try {
-      const res = await fetch('/send-email', { method: 'POST', body: data });
-      const json = await res.json();
-      if (res.ok) {
-        alert('Messaggio inviato con successo.');
-        form.reset();
-      } else {
-        alert('Errore: ' + (json.error || res.statusText));
-      }
-    } catch (err) {
-      alert('Errore di rete: ' + err.message);
-    } finally {
-      btn.disabled = false;
-      btn.textContent = 'Invia richiesta';
+    const name = (form.querySelector('[name="name"]').value || '').trim();
+    const email = (form.querySelector('[name="email"]').value || '').trim();
+    const message = (form.querySelector('[name="message"]').value || '').trim();
+    const to = 'grrosati@libero.it';
+    const subject = `Richiesta da sito GR Rosati - ${name || email}`;
+    const body = `${message}\n\nNome: ${name}\nEmail: ${email}`;
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&to=${encodeURIComponent(to)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    // Try opening Gmail compose in a new tab; fallback to mailto if popup blocked or not logged in
+    const w = window.open(gmailUrl, '_blank');
+    if(!w){
+      // fallback to mailto
+      const mailto = `mailto:${encodeURIComponent(to)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailto;
     }
   }
   </script>
 </head>
-<body>
+<body class="home">
   <header class="site-header">
     <div class="container">
       <a class="logo" href="/">
@@ -52,11 +48,19 @@
             <li><a href="/picchetti-legno.html">Picchetti in legno</a></li>
             <li><a href="/magatelli-legno.html">Magatelli in legno</a></li>
             <li><a href="/frattazzi-legno.html">Frattazzi in legno</a></li>
-            <li><a href="/segatura-legno.html">Segatura di legno</a></li>
+            <li><a href="/segatura.html">Segatura di legno</a></li>
+          </ul>
+        </div>
+
+        <div class="nav-dropdown">
+          <a href="#" class="nav-link">Articoli in acciaio per l'edilizia</a>
+          <ul class="dropdown-menu">
             <li><a href="/distanziatori.html">Distanziatori per armatura</a></li>
           </ul>
         </div>
-        <a href="#contatti">Contatti</a>
+
+        <a href="/certificazioni.html">Certificazioni</a>
+        <a href="/contatti.html">Contatti</a>
       </nav>
     </div>
   </header>
@@ -167,28 +171,63 @@
         <div class="post">
           <img class="card-image" loading="lazy" src="/assets/images/home/segatura.png" alt="Segatura di legno">
           <div class="card-body">
-            <h3><a href="/segatura-legno.html">Segatura di legno</a></h3>
+            <h3><a href="/segatura.html">Segatura di legno</a></h3>
             <p>Segatura ecologica senza polvere per pulizia pavimenti e altri usi, di legno naturale chiaro senza additivi chimici.</p>
-            <a href="/segatura-legno.html">Leggi tutto</a>
+            <a href="/segatura.html">Leggi tutto</a>
           </div>
         </div>
 
       </article>
 
       <aside class="sidebar">
-        <h3>Richiesta informazioni</h3>
-        <form id="contactForm" onsubmit="sendForm(event)">
-          <label>Nome
-            <input name="name" required>
-          </label>
-          <label>Email
-            <input type="email" name="email" required>
-          </label>
-          <label>Messaggio
-            <textarea name="message" rows="5" required></textarea>
-          </label>
-          <button type="submit">Invia richiesta</button>
-        </form>
+        <div class="review-card">
+          <div class="stars">★★★★★</div>
+          <div style="font-weight:700;margin-bottom:6px">G.R. Rosati Di Rosati Leonardo &amp; C. Snc</div>
+          <div style="color:var(--muted);font-size:14px;margin-bottom:8px">Basato su recensioni Google</div>
+          <a class="gm-btn" href="https://www.google.com/maps/place/G.R.+Rosati+Di+Rosati+Leonardo+%26+C.+Snc/@44.4469527,10.3892396,17z/data=!3m1!4b1!4m6!3m5!1s0x12d54e86acd68585:0xf3534b7f7cbc8e38!8m2!3d44.4469527!4d10.3892396!16s%2Fg%2F1wb31mxc?entry=ttu&g_ep=EgoyMDI1MTExMi4wIKXMDSoASAFQAw%3D%3D" target="_blank" rel="noopener">Visualizza recensioni su Google Maps</a>
+        </div>
+
+        <div class="purchase-box">
+          <h4>Modalità di acquisto</h4>
+          <ul>
+            <li>Ordine telefonico: Tel. 0522 812620</li>
+            <li>Bonifico anticipato in base all’ordine</li>
+            <li>Ritiro presso la nostra sede</li>
+            <li>Altre modalità da definire in base all’ordine</li>
+          </ul>
+          <h4>Modalità e tempi di consegna</h4>
+          <ul>
+            <li>Corriere espresso (spese da quantificare)</li>
+            <li>Ritiro diretto presso la nostra azienda (su accordo)</li>
+          </ul>
+          <a class="link-cta" href="/modalita-acquisto.html">Dettagli e condizioni</a>
+        </div>
+
+        <div class="form-block">
+          <div class="form-header">
+            <div class="mail-icon" aria-hidden="true">✉</div>
+            <div>
+              <h3 style="margin:0">Contattaci direttamente</h3>
+              <div class="mail-note">Questo pulsante aprirà la finestra di composizione della tua casella di posta (Gmail o client predefinito).</div>
+            </div>
+          </div>
+
+          <form id="contactForm" onsubmit="sendForm(event)">
+            <label>Nome
+              <input name="name" required>
+            </label>
+            <label>Email
+              <input type="email" name="email" required>
+            </label>
+            <label>Messaggio
+              <textarea name="message" rows="5" required></textarea>
+            </label>
+            <button type="submit" class="email-btn" aria-label="Apri Gmail per inviare la richiesta">
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2z" fill="#fff" opacity="0.06"/><path d="M4 6l8 5 8-5v12H4z" fill="#fff" opacity="0.08"/><path d="M20 6l-8 5L4 6" stroke="#fff" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              Apri Gmail
+            </button>
+          </form>
+        </div>
       </aside>
     </section>
   </main>
@@ -204,9 +243,15 @@
           Partita IVA 01560950352
         </div>
         <div style="text-align:right;min-width:180px">
-          <div><a href="#contatti" style="color:#9ec1ff;text-decoration:none;font-weight:600">GR Rosati E-mail</a></div>
+          <div><a href="/contatti.html" style="color:#9ec1ff;text-decoration:none;font-weight:600">GR Rosati E-mail</a></div>
           <div style="margin-top:6px"><a href="/privacy.html" style="color:#9ec1ff;text-decoration:none;font-weight:600">Privacy e Cookie Policy</a></div>
         </div>
+      </div>
+      <div class="funding-note">
+        <p>Progetto co-finanzato dal FEASR (Fondo Europeo per lo Sviluppo Rurale) nell’ambito del programma di sviluppo rurale (PSR) 2014-2020</p>
+        <p><a class="funding-link" href="/progetto-feasr.html">Progetto di investimento per la sostituzione di un compressore e l’introduzione di una bricchettatrice</a></p>
+        <p>Profili e utensili in legno per edilizia</p>
+        <p>Contro Telai regolabili per finestre e porte finestre, picchetti, listelli e altri articoli lignei</p>
       </div>
       <div style="margin-top:14px;color:#bdbdbd;font-size:13px">© GR Rosati - Tutti i diritti riservati</div>
     </div>

@@ -10,13 +10,128 @@
 <body>
   <header class="site-header"><div class="container"><a class="logo" href="/"><img class="logo-img" src="/assets/images/logo.png" alt="GR Rosati logo"><span class="brand">GR ROSATI</span></a></div></header>
   <main class="container">
-    <article style="margin:28px 0;padding:26px;background:var(--card-bg);border-radius:8px;border:1px solid var(--border)">
-      <img src="/assets/images/home/smussi-legno.png" style="width:100%;height:420px;object-fit:cover;border-radius:8px" alt="Smussi in legno">
-      <h1 style="margin-top:18px">Smussi in legno</h1>
-      <p>Profili triangolari per carpenteria edile per ottenere angoli smussati nelle gettate di calcestruzzo.</p>
-      <p><a href="/" class="btn">Torna alla home</a></p>
+    <article class="product-article">
+      <div class="product-media">
+        <img class="product-main" src="/assets/images/smussi/smussi-legno3.png" alt="Smussi in legno - profili triangolari">
+      </div>
+
+      <div class="product-header">
+        <div class="title-wrap">
+          <h1>Profili a sezione triangolare</h1>
+          <p class="lead">Gli smussi in legno per carpenteria edile sono profili a sezione triangolare impiegati per eliminare gli spigoli vivi nelle gettate di calcestruzzo.</p>
+        </div>
+      </div>
+
+      <div class="product-grid">
+        <div class="description">
+          <p>Gli smussi in legno per carpenteria edile sono profili a sezione triangolare, vengono utilizzati nel getto di pilastri per eliminare gli spigoli vivi, nella soletta di balconi come sgocciolatoio, nelle sommità di muri come rompispigolo, etc. Questi profili triangolari ancorati alle casserature consentono di ottenere calcestruzzi senza spigoli vivi.</p>
+
+          <p><strong>Profili Triangolari per cemento senza spigoli vivi</strong></p>
+
+          <h4>Misure delle sezioni</h4>
+          <p>Smussi in legno per carpenteria</p>
+
+          <ul>
+            <li>Profili triangolari in legno massello esotico senza nodi piallati su tutti i lati.</li>
+            <li>Barre da 2 – 3 – 4 metri.</li>
+            <li>Confezioni da 96 mt indipendentemente dalla lunghezza delle barre.</li>
+            <li>Ogni confezione è dotata di kit chiodi per il fissaggio.</li>
+            <li>Si inchiodano anche a basse temperature e in posizioni difficili.</li>
+            <li>Gli smussi in legno sono flessibili, permettendo raggi di curvatura ristretti.</li>
+            <li>Come nelle tavole anche sulla smussatura i profili imprimono la venatura del legno.</li>
+            <li>Assorbono l’acqua che si forma nella gettata del calcestruzzo.</li>
+          </ul>
+
+          <h4>Confezione salvaprodotto</h4>
+          <p>Prelegatura con nastro carta ogni 4 listelli:</p>
+          <ul>
+            <li>CONSENTE al rivenditore di vendere le barre sfuse mantenendo le stesse legate in pacchetti da quattro.</li>
+            <li>PERMETTE all’utilizzatore di ridurre al massimo gli sprechi delle rimanenze di cantiere.</li>
+          </ul>
+
+          <h4>Legatura listelli triangolari in legno</h4>
+          <p>I pacchetti legati in quadrato “antirotolamento” consentono un sicuro stoccaggio anche su cantilever e mantengono le stecche perfettamente diritte.</p>
+
+          <div class="product-gallery-figs" aria-hidden="false">
+            <figure>
+              <a class="gallery-item" href="#" data-src="/assets/images/smussi/smussi-legno.png"><img src="/assets/images/smussi/smussi-legno.png" alt="Smussi in legno in diverse dimensioni"></a>
+              <figcaption>Smussi in legno in diverse dimensioni, prelegatura ogni 4 listelli con nastro in carta</figcaption>
+            </figure>
+
+            <figure>
+              <a class="gallery-item" href="#" data-src="/assets/images/smussi/smussi-legno2.jpg"><img src="/assets/images/smussi/smussi-legno2.jpg" alt="Profili triangolari per calcestruzzo"></a>
+              <figcaption>Profili triangolari per calcestruzzo, legatura in quadro antirrotolamento</figcaption>
+            </figure>
+
+            <figure>
+              <a class="gallery-item" href="#" data-src="/assets/images/smussi/smussi-legno3.png"><img src="/assets/images/smussi/smussi-legno3.png" alt="Imballaggio su pallet"></a>
+              <figcaption>Imballaggio su pallet di smussi in legno per edilizia</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <aside class="specs">
+          <h4>Info rapide</h4>
+          <ul>
+            <li>Materiale: legno massello (esotico o abete a richiesta)</li>
+            <li>Lunghezze: 2 / 3 / 4 m</li>
+            <li>Confezione: 96 mt per confezione</li>
+            <li>Dotazione: kit chiodi per fissaggio</li>
+          </ul>
+          <p style="margin-top:12px"><a href="/" class="btn">Richiedi informazioni</a></p>
+        </aside>
+      </div>
     </article>
   </main>
   <footer class="site-footer"><div class="container">© GR Rosati - Tutti i diritti riservati</div></footer>
+  <!-- Lightbox markup -->
+  <div id="lightbox" class="lightbox-overlay" aria-hidden="true">
+    <div class="lightbox-content">
+      <button class="lightbox-close" aria-label="Chiudi">×</button>
+      <img id="lightbox-image" src="" alt="">
+    </div>
+  </div>
+  <script>
+    (function(){
+      const lightbox = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightbox-image');
+      const closeBtn = lightbox.querySelector('.lightbox-close');
+      const galleryItems = document.querySelectorAll('.gallery-item');
+
+      function open(src, alt){
+        lbImg.src = src;
+        lbImg.alt = alt || '';
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function close(){
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden','true');
+        lbImg.src = '';
+        document.body.style.overflow = '';
+      }
+
+      galleryItems.forEach(item=>{
+        item.addEventListener('click', function(ev){
+          ev.preventDefault();
+          const src = item.getAttribute('data-src') || item.querySelector('img').src;
+          const alt = item.querySelector('img').alt;
+          open(src, alt);
+        });
+      });
+
+      // open main image when clicked
+      const main = document.querySelector('.product-main');
+      if(main){
+        main.addEventListener('click', function(){ open(main.src, main.alt); });
+      }
+
+      closeBtn.addEventListener('click', close);
+      lightbox.addEventListener('click', function(e){ if(e.target === lightbox) close(); });
+      document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
+    })();
+  </script>
 </body>
 </html>

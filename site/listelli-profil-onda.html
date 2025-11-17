@@ -10,13 +10,158 @@
 <body>
   <header class="site-header"><div class="container"><a class="logo" href="/"><img class="logo-img" src="/assets/images/logo.png" alt="GR Rosati logo"><span class="brand">GR ROSATI</span></a></div></header>
   <main class="container">
-    <article style="margin:28px 0;padding:26px;background:var(--card-bg);border-radius:8px;border:1px solid var(--border)">
-      <img src="/assets/images/home/profil-onda2.png" style="width:100%;height:420px;object-fit:cover;border-radius:8px" alt="Listelli Profil Onda">
-      <h1 style="margin-top:18px">Listelli ondulati Profil Onda</h1>
-      <p>Listelli in legno per edilizia, profili ondulati per la posa di tettoie con ondulina. Soluzioni resistenti e facili da posare.</p>
-      <p><a href="/" class="btn">Torna alla home</a></p>
+    <article class="product-article">
+      <div class="product-media">
+        <img class="product-main" src="/assets/images/listelli_ondulati/profil-onda2.png" alt="Profil Onda listello ondulato">
+      </div>
+
+      <div class="product-header">
+        <div class="title-wrap">
+          <h1>Profil Onda listello ondulato in legno per edilizia</h1>
+        </div>
+      </div>
+
+      <div class="product-grid">
+        <div class="description">
+          <p><strong>I listelli ondulati in legno massello di abete Profil Onda</strong> sono impiegati in edilizia come supporto nelle coperture con ondulati di plastica, lamiera, ondulato catramato o paraurcelli per fibrocemento.</p>
+
+          <div class="product-gallery-figs" aria-hidden="false">
+            <figure>
+              <a class="gallery-item" href="#" data-src="/assets/images/listelli_ondulati/profil-onda2.png"><img src="/assets/images/listelli_ondulati/profil-onda2.png" alt="Profil Onda Listello"></a>
+              <figcaption>Profil Onda Listello ondulato in legno di abete massello</figcaption>
+            </figure>
+
+            <figure>
+              <a class="gallery-item" href="#" data-src="/assets/images/listelli_ondulati/profil-onda1.jpg"><img src="/assets/images/listelli_ondulati/profil-onda1.jpg" alt="Listello ondulato Profil Onda"></a>
+              <figcaption>Listello ondulato in legno Profil Onda</figcaption>
+            </figure>
+
+            <figure>
+              <a class="gallery-item" href="#" data-src="/assets/images/listelli_ondulati/profil-onda21.jpg"><img src="/assets/images/listelli_ondulati/profil-onda21.jpg" alt="Disegno Profil Onda"></a>
+              <figcaption>Listello ondulato in legno disegno</figcaption>
+            </figure>
+          </div>
+
+          <h3 style="margin-top:20px">Misure e confezioni</h3>
+          <table class="measures-table" aria-label="Misure e confezioni">
+            <thead>
+              <tr>
+                <th>Dimensioni in cm</th>
+                <th>P</th>
+                <th>L</th>
+                <th>H1</th>
+                <th>H2</th>
+                <th>N° Pezzi per confezione</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>ART 300</strong><div class="muted">Per onda plastica e lamiera</div></td>
+                <td>76</td>
+                <td>19</td>
+                <td>2</td>
+                <td>1</td>
+                <td>50</td>
+              </tr>
+              <tr>
+                <td><strong>ART. 109</strong><div class="muted">Per fibrocemento a 6 onde / lastra</div></td>
+                <td>17</td>
+                <td>19</td>
+                <td>6</td>
+                <td>2</td>
+                <td>30</td>
+              </tr>
+              <tr>
+                <td><strong>ART. 105</strong><div class="muted">Per fibrocemento a 7 onde / lastra</div></td>
+                <td>14</td>
+                <td>19</td>
+                <td>6</td>
+                <td>2</td>
+                <td>30</td>
+              </tr>
+              <tr>
+                <td><strong>ART. 96</strong><div class="muted">Per ondulina catramata</div></td>
+                <td>19</td>
+                <td>4</td>
+                <td>1</td>
+                <td>96</td>
+                <td>30</td>
+              </tr>
+              <tr>
+                <td><strong>ART. 200</strong><div class="muted">Per sottocoppo</div></td>
+                <td>20</td>
+                <td>20</td>
+                <td>4</td>
+                <td>2</td>
+                <td>30</td>
+              </tr>
+            </tbody>
+          </table>
+
+          <p class="measures-note">Scegli il meglio per la tua copertura, se sotto c’è Profil Onda il tuo tetto è ben fissato.</p>
+        </div>
+
+        <aside class="specs">
+          <h4>Info rapide</h4>
+          <ul>
+            <li>Materiale: Legno massello di abete</li>
+            <li>Applicazioni: supporto per ondulati plastica, lamiera, fibrocemento</li>
+            <li>Imballo: confezioni per specifiche articoli</li>
+          </ul>
+          <p style="margin-top:12px"><a href="/" class="btn">Richiedi informazioni</a></p>
+        </aside>
+      </div>
     </article>
   </main>
   <footer class="site-footer"><div class="container">© GR Rosati - Tutti i diritti riservati</div></footer>
+  <!-- Lightbox markup -->
+  <div id="lightbox" class="lightbox-overlay" aria-hidden="true">
+    <div class="lightbox-content">
+      <button class="lightbox-close" aria-label="Chiudi">×</button>
+      <img id="lightbox-image" src="" alt="">
+    </div>
+  </div>
+  <script>
+    (function(){
+      const lightbox = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightbox-image');
+      const closeBtn = lightbox.querySelector('.lightbox-close');
+      const galleryItems = document.querySelectorAll('.gallery-item');
+
+      function open(src, alt){
+        lbImg.src = src;
+        lbImg.alt = alt || '';
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function close(){
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden','true');
+        lbImg.src = '';
+        document.body.style.overflow = '';
+      }
+
+      galleryItems.forEach(item=>{
+        item.addEventListener('click', function(ev){
+          ev.preventDefault();
+          const src = item.getAttribute('data-src') || item.querySelector('img').src;
+          const alt = item.querySelector('img').alt;
+          open(src, alt);
+        });
+      });
+
+      // open main image when clicked
+      const main = document.querySelector('.product-main');
+      if(main){
+        main.addEventListener('click', function(){ open(main.src, main.alt); });
+      }
+
+      closeBtn.addEventListener('click', close);
+      lightbox.addEventListener('click', function(e){ if(e.target === lightbox) close(); });
+      document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
+    })();
+  </script>
 </body>
 </html>

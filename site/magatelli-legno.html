@@ -10,13 +10,120 @@
 <body>
   <header class="site-header"><div class="container"><a class="logo" href="/"><img class="logo-img" src="/assets/images/logo.png" alt="GR Rosati logo"><span class="brand">GR ROSATI</span></a></div></header>
   <main class="container">
-    <article style="margin:28px 0;padding:26px;background:var(--card-bg);border-radius:8px;border:1px solid var(--border)">
-      <img src="/assets/images/home/magatelli.png" style="width:100%;height:420px;object-fit:cover;border-radius:8px" alt="Magatelli in legno">
-      <h1 style="margin-top:18px">Magatelli in legno</h1>
-      <p>Listelli in legno magatelli da fissare a terra nel cemento per il fissaggio di parquet e pavimenti.</p>
-      <p><a href="/" class="btn">Torna alla home</a></p>
+    <article class="product-article">
+      <div class="product-media">
+        <img class="product-main" src="/assets/images/magatelli_legno/maga_dash.jpg" alt="Magatelli in legno per edilizia">
+      </div>
+
+      <div class="product-header">
+        <div class="title-wrap">
+          <h1>Listelli in legno a trapezio per edilizia</h1>
+          <p class="lead">Listelli in legno a sezione trapezoidale da annegare nel cemento per il fissaggio di parquets, perline, nei pavimenti o per il fissaggio di tegole nelle coperture.</p>
+        </div>
+      </div>
+
+      <div class="product-grid">
+        <div class="description">
+          <p>Profili in legno per fissaggio pavimenti e perline. Magatelli in legno per edilizia.</p>
+
+          <p><strong>Listelli in legno a trapezio per fissaggio parquet a pavimento e tegole in coperture</strong></p>
+          <p>Magatelli in legno per il fissaggio di pavimenti in legno e coperture.</p>
+
+          <h4>Sezioni</h4>
+          <ul>
+            <li>cm 2,5 x 5</li>
+            <li>cm 3 x 5</li>
+            <li>cm 3 x 4</li>
+            <li>cm 4 x 4</li>
+            <li>cm 6 x 4</li>
+          </ul>
+
+          <p><strong>Lunghezza:</strong> Mt 4 o sottomultipli</p>
+
+          <div class="product-gallery-figs" aria-hidden="false">
+            <figure>
+              <a class="gallery-item" href="#" data-src="/assets/images/magatelli_legno/maga_dash.jpg"><img src="/assets/images/magatelli_legno/maga_dash.jpg" alt="Magatelli in legno per edilizia"></a>
+              <figcaption>Magatelli in legno per edilizia</figcaption>
+            </figure>
+
+            <figure>
+              <a class="gallery-item" href="#" data-src="/assets/images/magatelli_legno/magatelli-legno.png"><img src="/assets/images/magatelli_legno/magatelli-legno.png" alt="Magatelli sezione trapezio"></a>
+              <figcaption>Magatelli in legno per il fissaggio di pavimenti e coperture</figcaption>
+            </figure>
+          </div>
+        </div>
+
+        <aside class="specs">
+          <h4>Info rapide</h4>
+          <ul>
+            <li>Sezioni: vedi elenco</li>
+            <li>Lunghezza: Mt 4 o sottomultipli</li>
+            <li>Uso: fissaggio parquet, perline e tegole</li>
+          </ul>
+          <p style="margin-top:12px"><a href="/" class="btn">Richiedi informazioni</a></p>
+        </aside>
+      </div>
     </article>
   </main>
   <footer class="site-footer"><div class="container">© GR Rosati - Tutti i diritti riservati</div></footer>
+
+  <!-- Lightbox markup -->
+  <div id="lightbox" class="lightbox-overlay" aria-hidden="true">
+    <div class="lightbox-content">
+      <button class="lightbox-close" aria-label="Chiudi">×</button>
+      <img id="lightbox-image" src="" alt="">
+    </div>
+  </div>
+
+  <script>
+    (function(){
+      const lightbox = document.getElementById('lightbox');
+      const lbImg = document.getElementById('lightbox-image');
+      const closeBtn = lightbox.querySelector('.lightbox-close');
+      const galleryItems = document.querySelectorAll('.gallery-item');
+      const container = document.querySelector('.product-media');
+
+      function open(src, alt){
+        lbImg.src = src;
+        lbImg.alt = alt || '';
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden','false');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function close(){
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden','true');
+        lbImg.src = '';
+        document.body.style.overflow = '';
+      }
+
+      galleryItems.forEach(item=>{
+        item.addEventListener('click', function(ev){
+          ev.preventDefault();
+          const src = item.getAttribute('data-src') || item.querySelector('img').src;
+          const alt = item.querySelector('img').alt;
+          open(src, alt);
+        });
+      });
+
+      const main = document.querySelector('.product-main');
+      if(main){
+        main.addEventListener('click', function(){ open(main.src, main.alt); });
+      }
+
+      closeBtn.addEventListener('click', close);
+      lightbox.addEventListener('click', function(e){ if(e.target === lightbox) close(); });
+      document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
+
+      // sample color and set background for .product-media
+      if(container && main){
+        container.style.setProperty('--bg-img', `url('${main.src}')`);
+        const tmp = new Image(); tmp.crossOrigin='Anonymous';
+        tmp.onload = function(){ try{ const w=40,h=40; const c=document.createElement('canvas'); c.width=w;c.height=h; const ctx=c.getContext('2d'); ctx.drawImage(tmp,0,0,w,h); const data=ctx.getImageData(0,0,w,h).data; let r=0,g=0,b=0,count=0; for(let i=0;i<data.length;i+=16){ r+=data[i]; g+=data[i+1]; b+=data[i+2]; count++; } if(count){ r=Math.round(r/count); g=Math.round(g/count); b=Math.round(b/count); container.style.setProperty('--primary-color', `rgba(${r},${g},${b},0.22)`); } }catch(e){ container.style.setProperty('--primary-color','rgba(155,104,62,0.14)'); }}; tmp.onerror=function(){ container.style.setProperty('--primary-color','rgba(155,104,62,0.14)'); }; tmp.src = main.src;
+      }
+    })();
+  </script>
+
 </body>
 </html>

@@ -3,61 +3,60 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Cunei in legno - GR Rosati</title>
+  <title>Segatura - GR Rosati</title>
   <link rel="stylesheet" href="/assets/styles.css">
   <link rel="icon" href="/assets/images/logo.png">
 </head>
 <body>
   <header class="site-header"><div class="container"><a class="logo" href="/"><img class="logo-img" src="/assets/images/logo.png" alt="GR Rosati logo"><span class="brand">GR ROSATI</span></a></div></header>
+
   <main class="container">
     <article class="product-article">
       <div class="product-media">
-        <img class="product-main" src="/assets/images/cunei/cunei-legno.jpg" alt="Cunei in legno">
+        <img class="product-main" src="/assets/images/segatura/segatura.png" alt="Segatura GR Rosati">
       </div>
 
       <div class="product-header">
         <div class="title-wrap">
-          <h1>Cunei in legno</h1>
-          <p class="lead"><strong>Cunei in legno di pioppo per lavori edili, kit pronti all'uso.</strong></p>
-        </div>
-        <div class="pefc-logo">
-          <img src="/assets/images/PEFC_Logo.svg" alt="PEFC certified">
+          <h1>La segatura depolverata ecologica antimacchia</h1>
+          <p class="lead">Segatura ottenuta esclusivamente dalla lavorazione di legni chiari macinati e depolverati presso il nostro stabilimento.</p>
         </div>
       </div>
 
       <div class="product-grid">
         <div class="description">
-          <p>I nostri cunei in legno sono realizzati in pioppo di alta qualità, pensati per uso edile: livellamento, fissaggio temporaneo e supporto durante le operazioni di muratura. Resistenti e facili da usare, disponibili in kit con chiodi.</p>
+          <p>Si tratta di segatura ecologica atossica con certificato di analisi, poiché il legno che la compone non è trattato. Segatura di legno senza polvere, proveniente da legno naturale, non contiene prodotti chimici.</p>
 
-          <ul>
-            <li><strong>Materiale:</strong> legno di pioppo naturale</li>
-            <li><strong>Usi:</strong> livellamento, fissaggio temporaneo, supporti</li>
-            <li><strong>Confezione:</strong> kit con chiodi e bancali per grandi forniture</li>
-            <li><strong>Finitura:</strong> grezza, pronta per impiego in cantiere</li>
-          </ul>
+          <p>La segatura è confezionata in sacchi antistrappo sottovuoto da lt. 50 e viene consegnata in su bancali da 96 pezzi.<br>
+          Segatura atossica certificata da analisi.<br>
+          Scheda caratteristiche del prodotto su ogni sacco di segatura.</p>
 
-          <div class="product-gallery">
-            <a class="gallery-item" href="#" data-src="/assets/images/cunei/cunei-legno.jpg"><img src="/assets/images/cunei/cunei-legno.jpg" alt="Cunei legno"></a>
-            <a class="gallery-item" href="#" data-src="/assets/images/cunei/cunei-legno1.png"><img src="/assets/images/cunei/cunei-legno1.png" alt="Cunei dettaglio"></a>
-            <a class="gallery-item" href="#" data-src="/assets/images/cunei/cuneo-legno.jpg"><img src="/assets/images/cunei/cuneo-legno.jpg" alt="Cuneo legno"></a>
-            <a class="gallery-item" href="#" data-src="/assets/images/cunei/bancale-cunei.jpg"><img src="/assets/images/cunei/bancale-cunei.jpg" alt="Bancale cunei"></a>
+          <p>La nostra segatura è ideale per la pulizia di pavimenti e per assorbire acqua. Umidità inferiore al 5%<br>
+          Alto assorbimento</p>
+
+          <div class="product-gallery-figs">
+            <figure>
+              <a class="gallery-item" href="#" data-src="/assets/images/segatura/segatura.png"><img src="/assets/images/segatura/segatura.png" alt="Segatura confezioni"></a>
+              <figcaption>Segatura depolverata - confezione lt. 50</figcaption>
+            </figure>
           </div>
         </div>
 
         <aside class="specs">
-          <h4>Specifiche tecniche</h4>
+          <h4>Info rapide</h4>
           <ul>
-            <li><strong>Materiale:</strong> Pioppo</li>
-            <li><strong>Dimensioni:</strong> varie misure disponibili</li>
-            <li><strong>Imballo:</strong> kit con chiodi / bancali</li>
-            <li><strong>Applicazioni:</strong> edilizia, fissaggio, livellamento</li>
+            <li>Confezione: sacco antistrappo sottovuoto lt. 50</li>
+            <li>Bancali: 96 pezzi</li>
+            <li>Analisi: certificato di analisi disponibile</li>
           </ul>
-          
+          <p style="margin-top:12px"><a href="/" class="btn">Richiedi informazioni</a></p>
         </aside>
       </div>
     </article>
   </main>
+
   <footer class="site-footer"><div class="container">© GR Rosati - Tutti i diritti riservati</div></footer>
+
   <!-- Lightbox markup -->
   <div id="lightbox" class="lightbox-overlay" aria-hidden="true">
     <div class="lightbox-content">
@@ -65,12 +64,14 @@
       <img id="lightbox-image" src="" alt="">
     </div>
   </div>
+
   <script>
     (function(){
       const lightbox = document.getElementById('lightbox');
       const lbImg = document.getElementById('lightbox-image');
       const closeBtn = lightbox.querySelector('.lightbox-close');
       const galleryItems = document.querySelectorAll('.gallery-item');
+      const container = document.querySelector('.product-media');
 
       function open(src, alt){
         lbImg.src = src;
@@ -96,7 +97,6 @@
         });
       });
 
-      // open main image when clicked
       const main = document.querySelector('.product-main');
       if(main){
         main.addEventListener('click', function(){ open(main.src, main.alt); });
@@ -105,7 +105,15 @@
       closeBtn.addEventListener('click', close);
       lightbox.addEventListener('click', function(e){ if(e.target === lightbox) close(); });
       document.addEventListener('keydown', function(e){ if(e.key === 'Escape') close(); });
+
+      // sample color and set background for .product-media
+      if(container && main){
+        container.style.setProperty('--bg-img', `url('${main.src}')`);
+        const tmp = new Image(); tmp.crossOrigin='Anonymous';
+        tmp.onload = function(){ try{ const w=40,h=40; const c=document.createElement('canvas'); c.width=w;c.height=h; const ctx=c.getContext('2d'); ctx.drawImage(tmp,0,0,w,h); const data=ctx.getImageData(0,0,w,h).data; let r=0,g=0,b=0,count=0; for(let i=0;i<data.length;i+=16){ r+=data[i]; g+=data[i+1]; b+=data[i+2]; count++; } if(count){ r=Math.round(r/count); g=Math.round(g/count); b=Math.round(b/count); container.style.setProperty('--primary-color', `rgba(${r},${g},${b},0.22)`); } }catch(e){ container.style.setProperty('--primary-color','rgba(155,104,62,0.14)'); }}; tmp.onerror=function(){ container.style.setProperty('--primary-color','rgba(155,104,62,0.14)'); }; tmp.src = main.src;
+      }
     })();
   </script>
+
 </body>
 </html>
